@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+    <hr>
+    <table border="1">
+        <tr style="background-color: blue;">
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Telefone</td>
+            <td>CPF</td>
+            <td>E-mail</td>
+            <td>Identidade</td>
+            <td>Excluir</td>
+            <td>Atualizar</td>
+        </tr>
+        {% for pessoa in pessoas: %}
+            <tr>
+                <td>{{ pessoa._id }}</td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.telefone }}</td>
+                <td>{{ pessoa.cpf }}</td>
+                <td>{{ pessoa.email }}</td>
+                <td><a href="/exibirIdentidade/{{ pessoa.identidade }}">ABRIR</a></td>
+                <td style="background-color: red;">
+                    <a href="/excluir/{{ pessoa._id }}">del</a>
+                </td>
+                <td style="background-color: gray;">
+                    <a href="/atualizar/{{ pessoa._id }}">update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Voltar</a>
+</body>
+</html>
