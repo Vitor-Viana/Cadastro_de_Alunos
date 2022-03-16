@@ -1,38 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Cadastro</title>
-</head>
-<body>
-    <h1>Página de Cadastro</h1>
-    <hr>
-    <form action="{{ url_for("cadastro") }}" method="POST" enctype="multipart/form-data">
-        <table>
-            <tr>
-                <td>Nome</td>
-                <td><input type="text" name="nome"></td>
-            </tr>
-            <tr>
-                <td>Telefone</td>
-                <td><input type="text" name="telefone"></td>
-            </tr>
-            <tr>
-                <td>CPF</td>
-                <td><input type="text" name="cpf"></td>
-            </tr>
-            <tr>
-                <td>E-mail</td>
-                <td><input type="text" name="email"></td>
-            </tr>
-            <tr>
-                <td>Identidade</td>
-                <td><input type="file" name="identidade"></td>
-            </tr>
-        </table> <br>
-        <input type="submit" value="Cadastrar">
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/cadastro.css") }}">
+{% endblock %}
+
+{% block conteudo %}
+    <main>
+        <h2>Página de Cadastro</h2>
+        <div class="caixa"> 
+            <form action="{{ url_for("cadastro") }}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <h3>Nome</h3>
+                    <input type="text" name="nome" placeholder="Digite o Nome">
+                </div>
+
+                <div>
+                    <h3>Telefone</h3>
+                    <input type="text" name="telefone" placeholder="Digite o Telefone">
+                </div>
+
+                <div>
+                    <h3>CPF</h3>
+                    <input type="text" name="cpf" placeholder="Digite o CPF">
+                </div>
+
+                <div>
+                    <h3>E-mail</h3>
+                    <input type="text" name="email" placeholder="Digite o E-mail">
+                </div>
+
+                <div>
+                    <h3>Identidade</h3>
+                    <input type="file" name="identidade">
+                </div>
+
+                <div class="botoes">
+                    <input type="submit" value="Cadastrar">
+                    <a href="/">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
