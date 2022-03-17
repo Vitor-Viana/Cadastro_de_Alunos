@@ -1,0 +1,36 @@
+.tr-cabecalho {
+    background-color: #001b44;
+    color: #87ceeb;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main h2 {
+    font-size: 40px;
+    color:#001b44;
+    margin-bottom: 20px;
+}
+#a-voltar {
+    text-decoration: none;
+    color: #001b44;
+    margin-left: 30px;
+    font-size: 30px;
+}
+#a-voltar:hover {
+    text-decoration: underline;
+}
+table tr td a {
+    text-decoration: none;
+    color: #008000;
+}
+table tr td a:hover {
+    text-decoration: underline;
+}
+.td-excluir {
+    background-color: #ff0000;
+}
+.td-excluir a {
+    color: #87ceeb;
+}

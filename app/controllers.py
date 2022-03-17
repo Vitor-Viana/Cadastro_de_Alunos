@@ -35,34 +35,30 @@ def index():
         return render_template("index.html")
     return redirect(url_for("login"))
 
-@app.route("/cadastrar")
-def  cadastrar():
-    if current_user.is_authenticated:
-        return render_template("cadastro.html")
-    return redirect(url_for("login"))
-
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
-    if request.method == "POST":
-        nome = request.form.get("nome")
-        telefone = request.form.get("telefone")
-        cpf = request.form.get("cpf")
-        email = request.form.get("email")
-        file = request.files['identidade']
+    if current_user.is_authenticated:
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            telefone = request.form.get("telefone")
+            cpf = request.form.get("cpf")
+            email = request.form.get("email")
+            file = request.files['identidade']
 
-        if nome and telefone and cpf and email and file.filename != '':
-            p = Pessoa(nome, telefone, cpf, email)
-            db.session.add(p)
-            db.session.commit()
-            
-            # Armazenando nome do arquivo identidade no banco de dados
-            p.identidade = str(p._id) + '-' + file.filename
-            db.session.commit()
+            if nome and telefone and cpf and email and file.filename != '':
+                p = Pessoa(nome, telefone, cpf, email)
+                db.session.add(p)
+                db.session.commit()
+                
+                # Armazenando nome do arquivo identidade no banco de dados
+                p.identidade = str(p._id) + '-' + file.filename
+                db.session.commit()
 
-            # Armazenando arquivo identidade no diretório
-            file.save('./app/data/' + p.identidade)
-
-    return redirect(url_for("index"))
+                # Armazenando arquivo identidade no diretório
+                file.save('./app/data/' + p.identidade)
+                return redirect(url_for("index"))
+        return render_template("cadastro.html")
+    return redirect(url_for("login"))
 
 @app.route("/lista")
 def lista():
