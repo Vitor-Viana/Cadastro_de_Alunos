@@ -1,0 +1,72 @@
+{% extends "base.html" %}   
+
+{% block link %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/aluno.css") }}">
+{% endblock %}
+
+{% block conteudo %}
+    <main>
+        <h2>Atualizar Dados</h2>
+
+        <div class="caixa">
+            <form action="/atualizar/{{ pessoa._id }}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <h3>Nome</h3>
+                    <input type="text" name="nome" value="{{ pessoa.nome }}">
+                </div>
+                
+                <div>
+                    <h3>Idade</h3>
+                    <input type="text" name="idade" value="{{ pessoa.idade }}">
+                </div>
+
+                <div>
+                    <h3>Peso</h3>
+                    <input type="text" name="peso" value="{{ pessoa.peso }}">
+                </div>
+
+                <div>
+                    <h3>Altura</h3>
+                    <input type="text" name="altura" value="{{ pessoa.altura }}">
+                </div>
+
+                <div>
+                    <h3>Faixa</h3>
+                    <input type="text" name="faixa" value="{{ pessoa.faixa }}">
+                </div>
+
+                <div>
+                    <h3>Grau</h3>
+                    <input type="text" name="grau" value="{{ pessoa.grau }}">
+                </div>
+
+                <div>
+                    <h3>Telefone</h3>
+                    <input type="text" name="telefone" value="{{ pessoa.telefone }}">
+                </div>
+
+                <div>
+                    <h3>CPF</h3>
+                    <input type="text" name="cpf" value="{{ pessoa.cpf }}">
+                </div>
+
+                <div>
+                    <h3>E-mail</h3>
+                    <input type="text" name="email" value="{{ pessoa.email }}"">
+                </div>
+
+                <div>
+                    <h3>Adicionar Nova Identidade</h3>
+                    <input type="file" name="identidade">
+                </div>
+                
+                <div class="botoes">
+                    <a href="/exibirIdentidade/{{ pessoa.identidade }}" class="a-abrir">ABRIR IDENTIDADE</a>
+                    <a href="/excluir/{{ pessoa._id }}" class="a-excluir">EXCLUIR ALUNO</a>
+                    <input type="submit" value="Atualizar Dados">
+                    <a href="{{ url_for("lista") }}" class="a-voltar">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

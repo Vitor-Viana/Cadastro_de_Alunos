@@ -1,0 +1,76 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lista-meses {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+#lista-presenca {
+    background-color: #008000;
+    width: 250px;
+
+    border: 1px solid #000;
+    border-radius: 20px;
+    margin-right: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#lista-falta {
+    background-color: rgb(255,0,0);
+    width: 250px;
+
+    border: 1px solid #000;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#lista-presenca input, #lista-falta input {
+    width: 100px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+#lista-presenca h2, #lista-falta h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.botao-voltar, .botao-presenca, .botao-falta {
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    text-decoration: none;
+    width: 300px;
+    height: 30px;
+    margin-top: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botao-voltar {
+    background-color: #001b44;
+    margin-top: 15px;
+}
+.botao-presenca {
+    background-color: #008000;
+    cursor: pointer;
+}
+.botao-falta {
+    background-color: rgb(255,0,0);
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.botao-atualizar {
+    background-color: #001b44;
+    color: #fff;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}

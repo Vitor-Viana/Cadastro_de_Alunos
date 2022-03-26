@@ -30,7 +30,6 @@ main h2 {
     margin-bottom: 20px;
 }
 .botoes a {
-    background-color: #001b44;
     color: #fff;
     border: 1px solid #000;
     border-radius: 20px;
@@ -43,6 +42,16 @@ main h2 {
     align-items: center;
     justify-content: center;
 }
+.a-excluir {
+    background-color: red;
+    margin-bottom: 10px;
+}
+.a-abrir {
+    background-color: grey;
+}
 .caixa div {
     margin-top: 20px;
+}
+.a-voltar {
+    background-color: #001b44;
 }

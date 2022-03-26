@@ -5,34 +5,21 @@
 {% endblock %}
 
 {% block conteudo %}
-    <a href="/" id="a-voltar">Voltar</a>
     <main>
         <h2>Lista de Alunos</h2>
-
-        <table border="1">
-            <tr class="tr-cabecalho">
-                <td>ID</td>
-                <td>Nome</td>
-                <td>Telefone</td>
-                <td>CPF</td>
-                <td>E-mail</td>
-                <td>Identidade</td>
-                <td>Atualizar</td>
-                <td>Excluir</td>
-            </tr>
+        <a href="/" class="a-voltar">Voltar</a>
+        
+        <section>
             {% for pessoa in pessoas: %}
-                <tr>
-                    <td>{{ pessoa._id }}</td>
-                    <td>{{ pessoa.nome }}</td>
-                    <td>{{ pessoa.telefone }}</td>
-                    <td>{{ pessoa.cpf }}</td>
-                    <td>{{ pessoa.email }}</td>
-                    <td><a href="/exibirIdentidade/{{ pessoa.identidade }}">ABRIR</a></td>
-                    <td><a href="/atualizar/{{ pessoa._id }}">ATUALIZAR</a></td>
-                    <td class="td-excluir"><a href="/excluir/{{ pessoa._id }}">EXCLUIR</a></td>
-                </tr>
+                <div class="lista">
+                    <a href="/aluno/{{ pessoa._id }}" class="aluno">{{ pessoa.nome }}</a>
+                    <a href="/diario/{{ pessoa._id }}">
+                        <img src="{{ url_for("static", filename="img/diario.png") }}" alt="diário" class="img-mini">
+                    </a>
+                    <hr>
+                </div>
             {% endfor %}
-        </table>
+        </section>
     </main>
 
 {% endblock %}

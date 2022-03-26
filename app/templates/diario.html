@@ -1,0 +1,48 @@
+{% extends "base.html" %}   
+
+{% block link %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/diario.css") }}">
+{% endblock %}
+
+{% block conteudo %}
+    <main>
+        <h2>Diário do(a) Aluno(a): {{ aluno.nome }}</h2>
+        <h2>DIA: {{ dataAtual }}</h2>
+        
+        <a href="/lista" class="botao-voltar">VOLTAR</a>
+
+        <form action="/diario/{{ aluno._id }}" method="POST" enctype="multipart/form-data">
+            <input type="submit" name="presente" value="Presença" class="botao-presenca">
+        </form>
+
+        <form action="/diario/{{ aluno._id }}" method="POST" enctype="multipart/form-data">
+            <input type="submit" name="falta" value="Falta" class="botao-falta">
+        </form>
+
+        <P>Total de Presenças: {{ aluno.tot_presenca }}</P>
+        <p>Total de Faltas: {{ aluno.tot_falta }}</p>
+    
+        <form action="/diario/{{ aluno._id }}" method="POST" enctype="multipart/form-data">
+            <section class="lista-meses">
+                <div id="lista-presenca">
+                    <h2>Lista de Presenças</h2>
+                    {% for i in range(12): %}
+                        <h3>{{ meses[i] }}</h3>
+                        <input type="number" name="pMes{{i+1}}" value="{{ presenca[i] }}">
+                    {% endfor %}
+                </div>
+
+                <div id="lista-falta">
+                    <h2>Lista de Faltas</h2>
+                    {% for i in range(12): %}
+                        <h3>{{ meses[i] }}</h3>
+                        <input type="number" name="fMes{{i+1}}" value="{{ falta[i] }}">
+                    {% endfor %}
+                </div>
+            </section>
+            <input type="submit" value="Atualizar" class="botao-atualizar">
+        </form>
+        
+    </main>
+
+{% endblock %}

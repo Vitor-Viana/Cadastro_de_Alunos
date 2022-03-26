@@ -3,6 +3,7 @@ from os import remove
 from app import app, login_manager
 from app.models import db, users, Pessoa, User
 from flask_login import login_user, current_user, logout_user
+from app.contador import totPresenca, totFalta, dataAtual
 
 @login_manager.user_loader
 def user_loader(email):
@@ -40,13 +41,18 @@ def cadastro():
     if current_user.is_authenticated:
         if request.method == "POST":
             nome = request.form.get("nome")
+            idade = request.form.get("idade")
+            peso = request.form.get("peso")
+            altura = request.form.get("altura")
+            faixa = request.form.get("faixa")
+            grau = request.form.get("grau")
             telefone = request.form.get("telefone")
             cpf = request.form.get("cpf")
             email = request.form.get("email")
             file = request.files['identidade']
 
-            if nome and telefone and cpf and email and file.filename != '':
-                p = Pessoa(nome, telefone, cpf, email)
+            if nome and telefone and cpf and email and idade and peso and altura and faixa and grau and file.filename != '':
+                p = Pessoa(nome, idade, peso, altura, faixa, grau, telefone, cpf, email)
                 db.session.add(p)
                 db.session.commit()
                 
@@ -83,13 +89,23 @@ def atualizar(id):
 
         if request.method == "POST":
             nome = request.form.get("nome")
+            idade = request.form.get("idade")
+            peso = request.form.get("peso")
+            altura = request.form.get("altura")
+            faixa = request.form.get("faixa")
+            grau = request.form.get("grau")
             telefone = request.form.get("telefone")
             cpf = request.form.get("cpf")
             email = request.form.get("email")
             file = request.files['identidade']
         
-            if nome and telefone and cpf and email:
+            if nome and telefone and cpf and email and idade and peso and altura and faixa and grau:
                 pessoa.nome = nome
+                pessoa.idade = idade
+                pessoa.peso = peso
+                pessoa.altura = altura
+                pessoa.faixa = faixa
+                pessoa.grau = grau
                 pessoa.telefone = telefone
                 pessoa.cpf = cpf
                 pessoa.email = email
@@ -104,14 +120,82 @@ def atualizar(id):
 
                 return redirect(url_for("lista"))
 
-        return render_template("atualizar.html", pessoa=pessoa)
-    else:
-        return redirect(url_for("login"))
+        return redirect(f"/aluno/{id}")
+    return redirect(url_for("login"))
+
+@app.route("/aluno/<int:id>")
+def aluno(id):
+    if current_user.is_authenticated:
+        pessoa = Pessoa.query.filter_by(_id=id).first()
+        return render_template("aluno.html", pessoa=pessoa)
+    return redirect(url_for("login"))
 
 @app.route('/exibirIdentidade/<name>')
 def exibirIdentidade(name):
     if current_user.is_authenticated:
         return send_from_directory("./data", name)
-    else:
-        return redirect(url_for("login"))
+    return redirect(url_for("login"))
+
+@app.route("/diario/<int:id>", methods=['GET', 'POST'])
+def diario(id):
+    mesAtual = int(dataAtual().split('/')[1]) - 1
+    meses = ('Janeiro', 'Fevereiro', 'Março', 'Abril',
+             'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+             'Outubro', 'Novembro', 'Dezembro')
+    aluno = Pessoa.query.filter_by(_id=id).first()
+    vet_presenca = list()
+    vet_falta = list()
+
+    if request.method == "POST":
+        presente = request.form.get("presente")
+        falta = request.form.get("falta")
+        if presente:
+            presenca = aluno.presenca.split('@')
+            presenca[mesAtual] = str(int(presenca[mesAtual])+1)
+            # Calculando o total de presença
+            aluno.tot_presenca = totPresenca(presenca)
+
+            presenca = '@'.join(presenca)
+            aluno.presenca = presenca
+           
+            db.session.commit()
+            return redirect(url_for("lista"))
         
+        if falta:
+            falta = aluno.falta.split('@')
+            falta[mesAtual] = str(int(falta[mesAtual])+1)
+            # Calculando o total da falta
+            aluno.tot_falta = totFalta(falta)
+            
+            falta = '@'.join(falta)
+            aluno.falta = falta
+            
+            db.session.commit()
+            return redirect(url_for("lista"))
+           
+        for i in range(1, 13):
+            num_presenca = request.form.get("pMes"+str(i))
+            num_falta = request.form.get("fMes"+str(i))
+            if num_presenca:
+                vet_presenca.append(num_presenca)
+            else:
+                vet_presenca.append('0')
+            if num_falta:
+                vet_falta.append(num_falta)
+            else:
+                vet_falta.append('0')
+        aluno.presenca = '@'.join(vet_presenca)
+        aluno.falta = '@'.join(vet_falta)
+        # Calculando o total de presença e falta
+        aluno.tot_presenca = totPresenca(vet_presenca)
+        aluno.tot_falta = totFalta(vet_falta)
+       
+        db.session.commit()
+
+    return render_template(
+                            "diario.html", 
+                            aluno=aluno, 
+                            meses=meses,
+                            presenca=aluno.presenca.split('@'),
+                            falta=aluno.falta.split('@'),
+                            dataAtual=dataAtual())
