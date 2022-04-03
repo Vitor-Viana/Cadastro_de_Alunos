@@ -42,8 +42,8 @@ class Pessoa(db.Model):
 db.create_all()
 
 users = {
-            'vitor@gmail.com':{'senha':'vitor1998', 'nome':'Vítor Viana'}, 
-            'hillary@gmail.com':{'senha':'hillary2002', 'nome':'Hillary Santos'}
+            'vitor viana':{'senha':'2022vitor', 'nome':'Vítor Viana'}, 
+            'usuario anonimo':{'senha':'12345678', 'nome':'Hillary Santos'}
         }
 class User(UserMixin):
     pass

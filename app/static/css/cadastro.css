@@ -5,7 +5,7 @@ main {
 }
 .caixa {
     background-color: rgba(0, 0, 0, 0.246);
-    width: max(300px, 30vw);
+    width: max(280px, 30vw);
 
     border: 2px solid #000;
     border-radius: 20px;
@@ -39,7 +39,7 @@ main {
     justify-content: center;
 }
 main h2 {
-    font-size: max(30px, 2vw);;
+    font-size: max(30px, 2vw);
     color:#001b44;
     margin-bottom: 20px;
 }

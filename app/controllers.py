@@ -6,21 +6,21 @@ from flask_login import login_user, current_user, logout_user
 from app.contador import totPresenca, totFalta, dataAtual
 
 @login_manager.user_loader
-def user_loader(email):
+def user_loader(usuario):
     user = User()
-    user.id = email
-    user.nome = users[email]['nome']
+    user.id = usuario
+    user.nome = users[usuario]['nome']
     return user
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
+        usuario = request.form['usuario']
         senha = request.form['password']
         
-        if email in users:
-            if senha == users[email]['senha']:
-                login_user(user_loader(email))
+        if usuario in users:
+            if senha == users[usuario]['senha']:
+                login_user(user_loader(usuario))
                 return redirect(url_for('index'))    
         return render_template('login.html')
     return render_template('login.html')
