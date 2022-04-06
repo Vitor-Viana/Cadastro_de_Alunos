@@ -55,3 +55,8 @@ main h2 {
 .a-voltar {
     background-color: #001b44;
 }
+@media screen and (max-width: 400px) {
+    .caixa {
+        width: 70vw;
+    }
+}
