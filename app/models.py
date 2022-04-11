@@ -42,8 +42,8 @@ class Pessoa(db.Model):
 db.create_all()
 
 users = {
-            'admin':{'senha':'admin', 'nome':'Vítor Viana'}, 
-            'admin-admin':{'senha':'admin-admin', 'nome':'Projeto CJJ'}
+            'admin':{'senha':'admin', 'nome':'admin'}, 
+            'admin-admin':{'senha':'admin-admin', 'nome':'admin-admin'}
         }
 class User(UserMixin):
     pass
