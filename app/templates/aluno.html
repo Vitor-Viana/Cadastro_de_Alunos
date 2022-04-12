@@ -62,11 +62,14 @@
                 
                 <div class="botoes">
                     <a href="/exibirIdentidade/{{ pessoa.identidade }}" class="a-abrir">ABRIR IDENTIDADE</a>
-                    <a href="/excluir/{{ pessoa._id }}" class="a-excluir">EXCLUIR ALUNO</a>
+                    <a href="#" class="a-excluir" onclick="excluir_aluno('/excluir/{{ pessoa._id }}', '{{ pessoa.nome }}')">EXCLUIR ALUNO</a>
                     <input type="submit" value="Atualizar Dados">
                     <a href="{{ url_for("lista") }}" class="a-voltar">Voltar</a>
                 </div>
             </form>
         </div>
     </main>
+    
+    <script src="{{ url_for("static", filename="js/aluno.js") }}"></script>
+
 {% endblock %}
