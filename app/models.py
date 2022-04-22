@@ -43,7 +43,7 @@ db.create_all()
 
 users = {
             'admin':{'senha':'admin', 'nome':'admin'}, 
-            'admin-admin':{'senha':'admin-admin', 'nome':'admin-admin'}
+            'usuarioanonimo':{'senha':'usuarioanonimo', 'nome':'usuarioanonimo'}
         }
 class User(UserMixin):
     pass
