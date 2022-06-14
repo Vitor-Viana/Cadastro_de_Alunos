@@ -1,7 +1,7 @@
 # Web App CJJ
 
 ### Este projeto está hospedado no Heroku, [clique aqui](https://appcjj.herokuapp.com/login), para acessar.
- - Login: usuarioanonimo
+ - Usuário: usuarioanonimo
  - Senha: usuarioanonimo
 
 ## Descrição
