@@ -1,5 +1,15 @@
-# Web App CJJ
+# Web App CJJ <img src="./img_project/logo.png" width="30px">
 
+## Página de Login
+<img src="./img_project/login.png" width="100%">
+
+## Página Inicial
+<img src="./img_project/home.png" width="100%">
+
+## Página de Cadastro
+<img src="./img_project/cadastro.gif" width="100%">
+
+---
 ## Descrição
 Esse projeto eu criei com o intuito de ajudar os meus professores, do Projeto Acolher, mas especificamente na parte do jiu-jitsu.
 Já fazia algum tempo que meus professores estavam reclamando, sobre a dificuldade de controlar a frequência dos alunos durante as aulas. E eu também havia observado, que sempre quando chegava nos dias de inscrições dos campeonatos, o professor sempre pedia as mesmas coisas: identidade, cpf, idade, nome, faixa e etc. Ai foi onde eu lembrei, cara eu sou um programador, porque não tentar resolver este problema. Começei a juntar todos os meus conhecimentos, adquiridos com os meus anos de estudos na faculdade, e a partir deste momento, começou minha aventura. 
