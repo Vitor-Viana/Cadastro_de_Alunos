@@ -1,4 +1,4 @@
-# Web App CJJ <img src="./img_project/logo.png" width="30px">
+# Web App CJJ <img src="img_project/logo.png" width="30px">
 
 ## Página de Login
 <img src="./img_project/login.png" width="100%">
