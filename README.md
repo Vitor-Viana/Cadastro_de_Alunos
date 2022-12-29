@@ -27,7 +27,6 @@ Esses foram alguns dos desafios que tive, mas que me ensinaram muito, principalm
 <img src="./img_project/cadastro.gif" width="100%">
 
 ## Lista de Alunos
-<img src="./img_project/cadastro.gif" width="100%">
 <img src="./img_project/lista_alunos.gif" width="100%">
 
 ## Páginas 100% Responsivas
